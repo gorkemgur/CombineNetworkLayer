@@ -44,6 +44,7 @@ extension EnpointsProtocol {
         }
         
         var request = URLRequest(url: components?.url ?? baseUrl)
+        request.timeoutInterval = 60
         request.httpMethod = method?.rawValue
         request.allHTTPHeaderFields = headers
         

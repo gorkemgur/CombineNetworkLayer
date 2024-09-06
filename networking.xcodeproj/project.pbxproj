@@ -94,6 +94,7 @@
 		EE9D49E32C8A826700DF9FF0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				EE9D49F42C8A951A00DF9FF0 /* EndpointsProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -101,7 +102,6 @@
 		EE9D49E42C8A826B00DF9FF0 /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
-				EE9D49F42C8A951A00DF9FF0 /* EndpointsProtocol.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
