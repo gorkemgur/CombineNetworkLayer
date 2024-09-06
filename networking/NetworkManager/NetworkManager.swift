@@ -9,14 +9,19 @@ import Foundation
 import Combine
 
 protocol NetworkService {
-    func request<T: Decodable>(with endpointPaths: EnpointsProtocol, responseType: T.Type) -> AnyPublisher<T, NetworkError>
+    func request<T: Decodable>(
+        with endpointPaths: EnpointsProtocol,
+        responseType: T.Type) -> AnyPublisher<T, NetworkError>
 }
 
 final class NetworkManager: NetworkService {
     private let session = URLSession.shared
     private let tokenManager = TokenManager.sharedInstance
     
-    func request<T: Decodable>(with endpointPaths: EnpointsProtocol, responseType: T.Type) -> AnyPublisher<T, NetworkError> {
+    func request<T: Decodable>(
+        with endpointPaths: EnpointsProtocol,
+        responseType: T.Type) -> AnyPublisher<T, NetworkError> {
+            
         var urlRequest = endpointPaths.asURLRequest()
         
         if let accessToken = tokenManager.retrieveAccessToken() {
@@ -65,7 +70,7 @@ final class NetworkManager: NetworkService {
 
 extension NetworkManager {
     fileprivate func renewAccessToken() -> AnyPublisher<RenewTokenResponse, NetworkError> {
-        return request(with: TokenPath.renewToken, responseType: RenewTokenResponse.self)
+        let renewTokenPublisher = request(with: TokenPath.renewToken, responseType: RenewTokenResponse.self)
         // We can use map too but it's not good solution for this we don't need return same data
             .handleEvents(receiveOutput: { [weak self] response in
                 self?.tokenManager.saveAccessToken(token: response.accessToken)
@@ -77,5 +82,7 @@ extension NetworkManager {
                 return error
             }
             .eraseToAnyPublisher()
+        
+        return renewTokenPublisher
     }
 }

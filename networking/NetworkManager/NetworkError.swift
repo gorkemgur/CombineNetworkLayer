@@ -20,21 +20,37 @@ enum NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .decodingError:
-            return "Error Decoding Data"
+            return NSLocalizedString(
+                "Error Decoding Data",
+                comment: "")
         case .urlError:
-            return "URL Convert Error"
+            return NSLocalizedString(
+                "URL Convert Error",
+                comment: "")
         case .dataError:
-            return "Data Error"
+            return NSLocalizedString(
+                "Data Error",
+                comment: "")
         case .encodingError:
-            return "Encoding Data Error"
+            return NSLocalizedString(
+                "Encoding Data Error",
+                comment: "")
         case .unauthorizedError:
-            return "Unauthorized Token Error"
+            return NSLocalizedString(
+                "Unauthorized Token Error",
+                comment: "")
         case .invalidResponse:
-            return "Invalid Response Error"
+            return NSLocalizedString(
+                "Invalid Response Error", 
+                comment: "")
         case .unknown:
-            return "Unknown Error"
+            return NSLocalizedString(
+                "Unknown Error", 
+                comment: "")
         case .custom(let errorMessage, let errorCode):
-            return "Error \(errorMessage) errorCode \(errorCode)"
+            return NSLocalizedString(
+                "Error \(errorMessage) errorCode \(errorCode)",
+                comment: "")
         }
     }
 }
