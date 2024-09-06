@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 protocol TokenManagerService {
     func saveAccessToken(token: String?)
@@ -15,11 +14,12 @@ protocol TokenManagerService {
 }
 
 final class TokenManager: TokenManagerService {
+    
+    private init() {}
+    
     static let sharedInstance = TokenManager()
     private let userDefaults = UserDefaults.standard
     private let concurrentQueue = DispatchQueue(label: "com.networking.app", attributes: .concurrent)
-    
-    private init() {}
     
     func saveAccessToken(token: String?) {
         if let token = token {

@@ -41,10 +41,6 @@ enum UserEndpointPaths: EnpointsProtocol {
         }
     }
     
-    var queryParameters: [URLQueryItem]? { return nil }
-    
-    var body: Encodable? { return nil }
-    
 }
 
 
